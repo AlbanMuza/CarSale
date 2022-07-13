@@ -1,0 +1,91 @@
+﻿@model CarSale.Models.Car
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+
+     @{
+        if (User.Identity.Name.Equals(Model.UploadedBy))
+        {
+                <h2>Allowe Edit</h2>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Car</h4>
+        <hr />
+        <dl class="row">
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Make)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Make)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Model)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Model)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Year)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Year)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.color)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.color)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.NewOrUsed)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.NewOrUsed)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.ImageLink)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.ImageLink)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.States)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.States)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.UploadedBy)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.UploadedBy)
+            </dd>
+        </dl>
+        
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a asp-action="Index">Back to List</a>
+        </form>
+    </div>
+
+}
+        else
+        {
+                <h2>You are not Allowed to Edit</h2>
+        }
+    }
+</body>
+</html>

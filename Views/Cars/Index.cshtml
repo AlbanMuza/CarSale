@@ -1,0 +1,105 @@
+﻿@model IEnumerable<CarSale.Models.Car>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div>
+    <form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by Make: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+
+            <select name="makeFilter" asp-route-makeFilter="@ViewData["makeFilter"]"  
+            asp-items="Html.GetEnumSelectList<CarSale.Models.Enumerators.Make>()">
+                <option selected="selected" value="">Select</option>
+               
+
+            </select>
+
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-action="Index">Back to Full List</a>
+        </p>
+    </div>
+</form>
+</div>
+<table class="table table-striped table-bordered ">
+        <thead>
+        <tr class="row">
+            <th class="col-md-3"></th>
+
+            <th class="col-md-1">
+                    @Html.DisplayNameFor(model => model.Make)
+                </th>
+                <th class="col-md-1">
+                    @Html.DisplayNameFor(model => model.Model)
+                </th>
+                 <th class="col-md-1">
+                   @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th class="col-md-3">
+                   @Html.DisplayNameFor(model => model.UploadedBy)
+                </th>
+
+                 <th class="col-md-1" >
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["yearSortParm"]">@Html.DisplayNameFor(model => model.Year)</a>
+                </th>
+               
+                <th class="col-md-1">
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DateNameSortParm"]">@Html.DisplayNameFor(model => model.InDate)</a>
+                </th>
+                
+               
+            <th></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="row">
+
+
+            <td  class="col-md-3">
+                @{string imageSrc = "/Cars/" + item.Id + "-1_s.jpg";}
+            <img src= "@imageSrc" alt="Car"/>
+            </td>
+
+            <td class="col-md-1">
+                @Html.DisplayFor(modelItem => item.Make)
+            </td>
+            <td  class="col-md-1">
+                        @{
+                            string text = ("/cars/details/"+ item.Id+"/"+item.Model + "-" + item.Make + "-" + item.Year).Replace(' ','-');
+                        }
+                <a href="@text">@Html.DisplayFor(modelItem => item.Model)</a>
+                
+                
+            </td>
+            
+            <td  class="col-md-1">
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td  class="col-md-3">
+                @Html.DisplayFor(modelItem => item.UploadedBy)
+            </td>    
+            <td  class="col-md-1">
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td class="col-md-2">
+                @Convert.ToDateTime(item.InDate).ToString("dd/MM/yyyy")
+            </td>
+            
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>

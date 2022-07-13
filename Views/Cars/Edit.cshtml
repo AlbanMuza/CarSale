@@ -1,0 +1,100 @@
+﻿@model CarSale.Models.Car
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit Car</title>
+</head>
+<body>
+
+
+<hr />
+
+    @{
+        if (User.Identity.Name.Equals(Model.UploadedBy))
+        {
+            <h2>Allowe Edit</h2>
+
+        <div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Make" class="control-label"></label>
+                <input asp-for="Make" class="form-control" />
+                <span asp-validation-for="Make" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Model" class="control-label"></label>
+                <input asp-for="Model" class="form-control" />
+                <span asp-validation-for="Model" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Year" class="control-label"></label>
+                <input asp-for="Year" class="form-control" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="color" class="control-label"></label>
+                <select asp-for="color" class="form-control"></select>
+                <span asp-validation-for="color" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewOrUsed" class="control-label"></label>
+                <select asp-for="NewOrUsed" class="form-control"></select>
+                <span asp-validation-for="NewOrUsed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageLink" class="control-label"></label>
+                <input asp-for="ImageLink" class="form-control" />
+                <span asp-validation-for="ImageLink" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="States" class="control-label"></label>
+                <select asp-for="States" class="form-control"></select>
+                <span asp-validation-for="States" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UploadedBy" class="control-label"></label>
+                <input asp-for="UploadedBy" class="form-control" readonly/>
+                <span asp-validation-for="UploadedBy" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="InDate" class="control-label"></label>
+                <input asp-for="InDate" class="form-control" />
+                <span asp-validation-for="InDate" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+        }
+        else
+        {
+            <h2>You are not Allowed to Edit</h2>
+        }
+    }
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+</body>
+</html>
